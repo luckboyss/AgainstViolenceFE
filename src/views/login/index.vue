@@ -119,7 +119,7 @@ export default {
       },
       loginRules: {
         username: [
-          {required: true, message: '邮箱地址不能为空', trigger: 'blur'},
+          { required: true, message: '邮箱地址不能为空', trigger: 'blur' },
           { trigger: ['blur', 'change'], type: 'email', message: '请输入正确的邮箱地址' }
           ],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]

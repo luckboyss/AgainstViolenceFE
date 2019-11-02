@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
@@ -25,6 +26,11 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
+      // 跳过mock登录验证。手动设置token，方便开发
+      commit('SET_TOKEN', 'admin-token')
+      setToken('admin-token')
+      resolve()
+      /*
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
@@ -33,6 +39,7 @@ const actions = {
       }).catch(error => {
         reject(error)
       })
+      */
     })
   },
 

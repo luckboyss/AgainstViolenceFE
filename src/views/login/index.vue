@@ -72,7 +72,15 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;border-radius: 10px;" @click.native.prevent="handleLogin">Login</el-button>
+        <el-button :loading="loading" type="primary" style="width:100%;border-radius: 10px;" @click.native.prevent="handleLogin">Login</el-button>
+      </el-form-item>
+
+      <el-form-item>
+        <el-row justify="end">
+          <el-col :span="Number(12)">
+            <router-link to="/register">注册用户</router-link>
+          </el-col>
+        </el-row>
       </el-form-item>
 
       <div class="tips">
@@ -110,7 +118,10 @@ export default {
         password: ''
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        username: [
+          {required: true, message: '邮箱地址不能为空', trigger: 'blur'},
+          { trigger: ['blur', 'change'], type: 'email', message: '请输入正确的邮箱地址' }
+          ],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
